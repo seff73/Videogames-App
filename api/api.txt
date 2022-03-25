@@ -1,0 +1,14 @@
+APIVideogames: 39dbc025744b450c8ebc66cd371e096a
+
+https://api.rawg.io/api/games
+
+ ?key={YOUR_API_KEY}
+
+?key={39dbc025744b450c8ebc66cd371e096a}
+
+https://api.rawg.io/api/games?key=39dbc025744b450c8ebc66cd371e096a
+
+GET https://api.rawg.io/api/games
+GET https://api.rawg.io/api/games?search={game}
+GET https://api.rawg.io/api/genres
+GET https://api.rawg.io/api/games/{id}
