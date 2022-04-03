@@ -190,7 +190,7 @@ function rootReducer(state = initialState, action) {
             let creator = []
 
             if(action.payload === 'All') {
-                byCreator.push(state.videogames.flat());
+                byCreator = state.videogames.flat();
             }
             else if(action.payload === 'API') {
                 byCreator = state.videogames.flat().filter(game => !game.createdInDb);
@@ -199,10 +199,10 @@ function rootReducer(state = initialState, action) {
                 byCreator = state.videogames.flat().filter(game => game.createdInDb);
             };
             //console.log(byCreator)            
-            if(byCreator.length === 1) {
+            /*if(byCreator.length === 1) {
                 creator = byCreator
-            }
-            while(byCreator.length > 1) {
+            }*/ // no es necesario
+            while(byCreator.length >= 1) {
                 if(byCreator[15]) {
                     creator.push(byCreator.splice(0, 15))
                 }
