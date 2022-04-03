@@ -38,7 +38,7 @@ const getApiGames = async () => {
 };
 
 const getDbGames = async () => {
-    return await Videogame.findAll({
+    let result = await Videogame.findAll({
         include: {
             model: Genre,
             attributes: ['name'],
@@ -47,7 +47,9 @@ const getDbGames = async () => {
             }
 
         }
-    });    
+    });
+    
+    return result;    
     
 };
 

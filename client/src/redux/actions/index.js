@@ -1,11 +1,26 @@
 import axios from 'axios';
-import { GET_ALL_GAMES, CREATE_GAME, GET_GAME_DETAIL, GET_ALL_GENRES, SEARCH_GAME, GET_ALL_PLATFORMS, DELETE_GAME, EDIT_GAME } from './actions';
+import { GET_ALL_GAMES, CREATE_GAME, GET_GAME_DETAIL, GET_ALL_GENRES, SEARCH_GAME, GET_ALL_PLATFORMS, DELETE_GAME, EDIT_GAME, FILTER_BY_GENRES, GET_BY_SORT, GET_BY_RATING, CHANGE_CURRENT_PAGE, GET_BY_CREATOR } from './actions';
 
 export function getGames() {
     return async function(dispatch) {
-        const result = await axios.get('http://localhost:3001/videogames');
+        let result = await axios.get('http://localhost:3001/videogames');
         let paginado = [];
       
+        let dbGames = result.data.filter(game => game.createdInDb);
+        const getGens = (game) => {
+                let namesGen = []
+                for(let i=0; i<game.genres.length; i++){
+                    namesGen.push(game.genres[i].name)
+                    namesGen.flat();
+                }   
+                        
+                return namesGen
+        }
+                    
+        dbGames = dbGames.filter(game => game.genres = getGens(game));
+
+        result.data.push(dbGames);
+        result.data.flat();
         
         while(result.data.length) {
 
@@ -23,6 +38,7 @@ export function getGames() {
 
     };
 };
+
 
 export function getGenres() {
     return async function(dispatch) {
@@ -116,3 +132,38 @@ export function putGame(game, id) {
     };
 };
 
+export function getByGenres(genre) {
+      return {
+        type: FILTER_BY_GENRES,
+        payload: genre
+    }
+};
+
+export function getBySort(order) {
+    return {
+        type: GET_BY_SORT,
+        payload: order
+    }
+};
+
+export function getByRating(rating) {
+    return {
+        type: GET_BY_RATING,
+        payload: rating
+    }
+};
+
+export function getByCreator(creator){
+    return {
+        type: GET_BY_CREATOR,
+        payload: creator
+    };
+};
+
+
+export function changeCurrentPage(page) {
+    return {
+        type: CHANGE_CURRENT_PAGE,
+        payload: page
+    }
+};

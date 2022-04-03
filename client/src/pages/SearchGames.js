@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import VideogameCard from "../components/VideogameCard";
+import img from "../assets/defaultGameImg.png";
 
 
 
@@ -19,8 +20,9 @@ const gamesResult = useSelector(state => state.searchGames);
             <VideogameCard 
                 key={game.name}
                 name={game.name}
-                img={game.background_image}
+                img={game.background_image || img }
                 genres={game.genres.join(' - ')}
+                rating={game.rating}
                 id={game.id}
             />
 

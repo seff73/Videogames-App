@@ -4,38 +4,54 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getGames } from '../redux/actions';
 import img from "../assets/defaultGameImg.png";
 
-export default function Videogames() {
+
+export default function Videogames({pagina}) {
    const dispatch = useDispatch();
    const allGames = useSelector(state => state.videogames);
 
+   const [currentPage, setCurrentPage] = useState(0);
+
+
    useEffect(()=> {
-      dispatch(getGames());
-      
-   },[dispatch]);
+    
+    if(!allGames) {dispatch(getGames());}
+     
+    if(pagina === 0) {
+     setCurrentPage(0);
+    }
+         
+   },[dispatch, allGames]);
 
 
 
 
-//console.log(allGames)
+//console.log('pagina:'+pagina)
 
-const [currentPage, setCurrentPage] = useState(0);
 let page = 1
 const handlePage = (e) => {
-  setCurrentPage(e.target.value)
+  if(pagina) {
+    setCurrentPage(e.target.value);
+  }
+  else {
+    page = 1;
+    setCurrentPage(e.target.value);
+  }
+
   
 
 }
 
-const handleGenres = (game) => {
+/*const handleGenres = (game) => {
   
   if(game.createdInDb) {
-    return game.genres.map(genre=>genre.name).join(' - ')
+    return game.genres.join(' - ')//return game.genres.map(genre=>genre.name).join(' - ')
   }
   else {
     return game.genres.join(' - ')
   }
-}
-//console.log(currentPage);
+}*/
+//console.log('current:'+currentPage);
+
 
 
 
@@ -47,12 +63,13 @@ const handleGenres = (game) => {
               display: 'grid',
               gridTemplateColumns: '1fr 1fr 1fr'
       }}>
-        {allGames? allGames[currentPage].map(game =>
+        {allGames? allGames[currentPage]?.map(game =>
             <VideogameCard 
                 key={game.name}
                 name={game.name}
                 img={game.background_image || img }
-                genres={handleGenres(game)}
+                genres={game.genres?.join(' - ')}//handleGenres(game)}
+                rating={game.rating}
                 
                 id={game.id}
                             
@@ -84,6 +101,7 @@ const handleGenres = (game) => {
       ) :false}
       </div>: false}
 
+      
     </div>
   )
 }

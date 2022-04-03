@@ -1,26 +1,42 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteGame, getDetail } from '../redux/actions';
 import img from '../assets/defaultGameImg.png';
+import star1 from "../assets/star1.jpg";
+import star2 from "../assets/star2.jpg";
+import star3 from "../assets/star3.jpg";
+import star4 from "../assets/star4.jpg";
+import star5 from "../assets/star5.jpg";
+
+
 
 export default function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const gameDetail = useSelector(state => state.videogame);
   const navigateTo = useNavigate();
+  const [ stars, setStars ] = useState(null);
   
   
 
-  useEffect(()=> {
+  useEffect(() => {
     dispatch(getDetail(id));
     
+  
+
     return function(){
       dispatch(getDetail(0));
     }
     
     
-  }, [dispatch, id]);
+  }, [dispatch, id, stars]);
+
+  
+  
+  
+  
+
 
   const handleGenres = () => {
     
@@ -66,7 +82,9 @@ export default function Detail() {
 
         <p><b>Released:</b> {gameDetail.released}</p>
         <p><b>Description:</b> {gameDetail.description}</p>
+      
         <p><b>Rating: </b>{gameDetail.rating}</p>
+        
         <p><b>Platforms: </b>{gameDetail.platforms?.join(' - ')}</p>
         <p><b>Genres: </b>{handleGenres()}</p>
         <br/>

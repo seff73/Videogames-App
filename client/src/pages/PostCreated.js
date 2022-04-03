@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { postGame } from "../redux/actions";
+import { getGames, postGame } from "../redux/actions";
 
 
 export default function PostCreated() {
@@ -9,11 +9,13 @@ export default function PostCreated() {
     const [ created, setCreated ] = useState(null)
     const createResult = useSelector(state => state.createdRes);
     const navigateTo = useNavigate();
+    const dispatch = useDispatch();
 
 
     useEffect(()=> {
-        return postGame(0);
-    })
+        dispatch(getGames())
+        return postGame(0);   
+    }, []);
 
   return (
     <div>
