@@ -1,15 +1,15 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Landing from './pages/Landing';
-import Home from './pages/Home'
+import Home from './pages/Home/Home';
 import Create from './pages/Create';
 import Detail from './pages/Detail';
 import NotFound from './pages/NotFound';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import SearchGames from './pages/SearchGames';
 import PostCreated from './pages/PostCreated';
 import PostDeleted from './pages/PostDeleted';
 import EditGame from './pages/EditGame';
+import Landing from './pages/Landing/Landing';
 
 function App() {
   return (

@@ -1,6 +1,7 @@
-import SearchBar from './SearchBar';
+import SearchBar from '../SearchBar';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
+import styles from './NavBar.module.css';
 
 export default function NavBar() {
   const navigateTo = useNavigate();
@@ -19,12 +20,8 @@ export default function NavBar() {
 
   return (
     <div>
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          backgroundColor: '#131921',
-          marginBottom: '10px'
-        }}>
+        <div className={styles.navContainer}
+        >
           <div style={{
                   marginLeft: '20px'
           }}>
@@ -54,13 +51,7 @@ export default function NavBar() {
                   marginRight: '50px'
             }}>
             
-            <button style={{
-                        height: '35px',
-                        borderRadius: '8px',
-                        backgroundColor: '#7209b7',
-                        color: 'white',
-                        cursor: 'pointer'
-                    }}
+            <button className={styles.createButton}
                     onClick={handleCreate}
             > {nameButton}</button>
             </div> 

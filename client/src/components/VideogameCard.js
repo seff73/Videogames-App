@@ -24,10 +24,10 @@ export default function VideogameCard({ name, img, genres, id, rating }) {
     else if(rating >=4 && rating <5){
       setStars(star4)
     }
-    else if(rating = 5) {
+    else if(rating >= 5) {
       setStars(star5)
     };
-  }, [stars]);
+  }, [stars, rating]);
   
   
   return (

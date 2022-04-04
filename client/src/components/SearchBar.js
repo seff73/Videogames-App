@@ -43,7 +43,7 @@ const handleOnKey = (e) => {
                
         />
         
-            <button style={{
+            {/*<button style={{
                   height: '35px',
                   borderRadius: '8px',
                   backgroundColor: '#fcbb6a',
@@ -51,7 +51,7 @@ const handleOnKey = (e) => {
                 }}
                 onClick={handleSearch}
             >Search
-            </button>
+              </button>*/}
         
       
     </div>

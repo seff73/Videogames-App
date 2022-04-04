@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { getByCreator, getByGenres, getByRating, getBySort, getGenres, getPlatforms } from '../redux/actions';
-import Videogames from '../components/Videogames';
+import { getByCreator, getByGenres, getByRating, getBySort, getGenres, getPlatforms } from '../../redux/actions';
+import Videogames from '../../components/Videogames';
+
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -14,6 +15,8 @@ export default function Home() {
   useEffect(()=> {
       if(!allGenres) dispatch(getGenres());
       if(!allGames) dispatch(getPlatforms());
+      
+
   },[dispatch, pagina]);
 
   
@@ -78,10 +81,16 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div style={{ //backgroundImage: `url(${background})`,
+     // background: '#f5f5f5',
+    backgroundSize: 'cover',
+    //backgroundPosition: 'center',
+    height: '100vh',
+    width: '100vw',}}
+    >
      
 
-        <label>Sort by: </label>
+        <label key='sortBy'>Sort by: </label>
         <select style={{
                     border: 'none',
                     textAlign: 'center',
@@ -90,13 +99,14 @@ export default function Home() {
                     marginRight: '10px'
                 }}
                 onChange={handleOrder}
+                key='selectSortBy'
         >
-          <option value='Featured'>Featured</option>
-          <option value='A-Z'>A-Z</option>
-          <option value='Z-A'>Z-A</option>
+          <option value='Featured' key='Feat'>Featured</option>
+          <option value='A-Z' key='sAZ'>A-Z</option>
+          <option value='Z-A' key='sZA'>Z-A</option>
         </select>
         
-        <label>Genres: </label>
+        <label key='genres'>Genres: </label>
         <select style={{
                     border: 'none',
                     textAlign: 'center',
@@ -105,14 +115,15 @@ export default function Home() {
                     marginRight: '10px'
                 }}
                 onChange={handleByGenres}
+                key='selectGenres'
         >
-          <option>All</option>
+          <option key='gAll'>All</option>
           {allGenres? allGenres.map(genre =>
-            <option value={genre.name}>{genre.name}</option>
+            <option value={genre} key={genre}>{genre}</option>
           ): false}          
         </select>
 
-        <label>Created by: </label>
+        <label key='createdBy'>Created by: </label>
         <select style={{
                     border: 'none',
                     textAlign: 'center',
@@ -121,14 +132,15 @@ export default function Home() {
                     marginRight: '10px'
                 }}
                 onChange={handleByCreator}
+                key='selectCreatedBy'
         >
-          <option value='All'>All</option>
-          <option value='API'>API</option>
-          <option value='USERS'>Users</option>
+          <option value='All' key='cAll'>All</option>
+          <option value='API' key='cApi'>API</option>
+          <option value='USERS' key='cUsers'>Users</option>
           
         </select>
         
-        <label>Rating: </label>
+        <label key='rating'>Rating: </label>
         <select style={{
                     border: 'none',
                     textAlign: 'center',
@@ -137,16 +149,17 @@ export default function Home() {
                     marginRight: '10px'
                 }}
                 onChange={handleByRating}
+                key='selectRating'
         >
-          <option value='All'>All</option>
-          <option value={5}>5 Stars</option>
-          <option value={4}>4 Stars</option>
-          <option value={3}>3 Stars</option>
-          <option value={2}>2 Stars</option>
-          <option value={1}>1 Star</option>
+          <option value='All' key='RAll'>All</option>
+          <option value={5} key='R5'>5 Stars</option>
+          <option value={4} key='R4'>4 Stars</option>
+          <option value={3} key='R3'>3 Stars</option>
+          <option value={2} key='R2'>2 Stars</option>
+          <option value={1} key='R1'>1 Star</option>
         </select>
         
-        <Videogames pagina={pagina}/>
+        <Videogames pagina={pagina} key='videogamesContent'/>
     </div>
   )
 }

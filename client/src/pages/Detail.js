@@ -1,13 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteGame, getDetail } from '../redux/actions';
 import img from '../assets/defaultGameImg.png';
-import star1 from "../assets/star1.jpg";
-import star2 from "../assets/star2.jpg";
-import star3 from "../assets/star3.jpg";
-import star4 from "../assets/star4.jpg";
-import star5 from "../assets/star5.jpg";
 
 
 
@@ -16,7 +11,7 @@ export default function Detail() {
   const { id } = useParams();
   const gameDetail = useSelector(state => state.videogame);
   const navigateTo = useNavigate();
-  const [ stars, setStars ] = useState(null);
+
   
   
 
@@ -30,7 +25,7 @@ export default function Detail() {
     }
     
     
-  }, [dispatch, id, stars]);
+  }, [dispatch, id]);
 
   
   

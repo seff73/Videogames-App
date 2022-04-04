@@ -114,6 +114,20 @@ const arrPlatforms = [
     "Game Gear",
     "Neo Geo"
 ];
+const getGenres = async () => {
+    const getApiGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+    getApiGenres.data.results.map(genre => {
+        Genre.findOrCreate({
+            where: { name: genre.name }
+
+        });
+    })
+    const allGenres = await Genre.findAll();
+    return allGenres;
+}
+
+const arrGenres = getGenres();
+
 
 router.get('/videogames', async (req, res) => {
     let { name } = req.query;
@@ -159,16 +173,20 @@ router.get('/videogames', async (req, res) => {
 });
 
 router.get('/genres', async (req, res) => {
-    const getApiGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
+    /*const getApiGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
     getApiGenres.data.results.map(genre => {
         Genre.findOrCreate({
             where: { name: genre.name }
 
         });
-    })
-    const allGenres = await Genre.findAll()
+    })*/
+    //const allGenres = await Genre.findAll()
     //console.log(allGenres)
-    res.status(200).send(allGenres)
+    //console.log(arrGenres)
+    const genres = [];
+    const result = await arrGenres;
+    result.map(genre => genres.push(genre.name))
+    res.status(200).send(genres)
 });
 
 router.get('/videogames/:id', async (req, res) => {

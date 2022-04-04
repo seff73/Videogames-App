@@ -20,7 +20,7 @@ export default function Videogames({pagina}) {
      setCurrentPage(0);
     }
          
-   },[dispatch, allGames]);
+   },[dispatch, allGames, pagina]);
 
 
 
@@ -62,7 +62,9 @@ const handlePage = (e) => {
       <div style={{
               display: 'grid',
               gridTemplateColumns: '1fr 1fr 1fr'
-      }}>
+           }}
+           key='videogames1'
+      > 
         {allGames? allGames[currentPage]?.map(game =>
             <VideogameCard 
                 key={game.name}

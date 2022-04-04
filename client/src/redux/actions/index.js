@@ -125,7 +125,7 @@ export function deleteGame(id) {
 
 export function putGame(game, id) {
     return async function(dispatch) {
-        const result = await axios.put(`http://localhost:3001/videogames/${id}`, game);
+        await axios.put(`http://localhost:3001/videogames/${id}`, game);
         return dispatch({
             type: EDIT_GAME,
         });

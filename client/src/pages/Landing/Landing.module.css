@@ -1,0 +1,39 @@
+.mainContent {
+  background-image: url('../../assets/bkg.jpg');
+  display: grid;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  
+}
+
+.mainTitle {
+  text-align: center;
+  color: #ffffff;
+  text-shadow: 0 0 5px #902ce1, 
+               0 0 10px #db3eb1, 
+               0 0 20px #db3eb1, 
+               0 0 40px #db3eb1, 
+               0 0 80px #e1b12c
+}
+
+.mainButton {
+  color: #db3eb1;
+  border: 6px solid #db3eb1;
+  border-radius:15px;
+  padding: 15px 25px;
+  font-size: 30px;
+  font-family: tahoma;
+  letter-spacing:5px;
+  cursor: pointer;
+  font-weight: bold;
+  filter: drop-shadow(0 0 15px #db3eb1) drop-shadow(0 0 50px #db3eb1) contrast(2) brightness(2);
+  transition: .5s;
+}
+
+.mainButton:hover {
+  color: black;
+  background-color: #db3eb1;
+  filter: drop-shadow(0 0 20px #db3eb1) contrast(2) brightness(2);
+}

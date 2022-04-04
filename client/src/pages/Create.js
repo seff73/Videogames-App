@@ -7,11 +7,11 @@ import star2 from "../assets/star2.jpg";
 import star3 from "../assets/star3.jpg";
 import star4 from "../assets/star4.jpg";
 import star5 from "../assets/star5.jpg";
-import { postGame } from "../redux/actions";
+import { getGenres, getPlatforms, postGame } from "../redux/actions";
 
 export default function Create() {
   const dispatch = useDispatch();
-  const allGenres = /*[{name:'RPG'},{name:'Action'}, {name:'Adventure'}, {name:'Platforms'}, {name:'Arcade'}, {name:'web'}]*/ useSelector(state => state.genres);
+  const allGenres = useSelector(state => state.genres);
   const allPlatforms = useSelector(state => state.platforms);
   const navigateTo = useNavigate();
   const [ showGenres, setShowGenres ] = useState('none');
@@ -32,15 +32,14 @@ export default function Create() {
   const [ imgFile, setImgFile ] = useState(img);
 
   const [ myPlatforms, setMyPlatforms ] = useState(allPlatforms);
-  const [ myGenres, setMyGenres ] = useState(allGenres.filter(genre => genre.name));
-  const [showCreate, setShowCreate ] = useState('true');
+  const [ myGenres, setMyGenres ] = useState(allGenres)//allGenres? allGenres.filter(genre => genre.name):false);
+  const [ showCreate, setShowCreate ] = useState('true');
   const [stars, setStars ] = useState(null);
 
+  
 
   
-  const handleCancel = () => {
-    navigateTo('/home');
-  }
+
   
   const handleShow = (e) => {
     e.preventDefault();
@@ -58,7 +57,10 @@ export default function Create() {
         ...btnShow,
         btnGenres: 'show'
       })
-
+    if(!myGenres){
+      setMyGenres(allGenres)
+    }
+    
     }
     else {
       showPlatf === "none"?
@@ -75,6 +77,9 @@ export default function Create() {
         ...btnShow,
         btnPlatf: 'show'
       })
+    if(!myPlatforms){
+      setMyPlatforms(allPlatforms)
+    }
     }
     
   };
@@ -102,7 +107,7 @@ export default function Create() {
       e.target.name === 'genres'?
       setMyGenres(
         allGenres.filter(genre =>
-          myGenres.includes(genre) || genre.name === e.target.value )) :
+          myGenres.includes(genre) || genre === e.target.value )) :
       
       setMyPlatforms(
         allPlatforms.filter(platf => 
@@ -120,7 +125,7 @@ export default function Create() {
       
       e.target.name === 'genres'?
       setMyGenres(
-        myGenres.filter(genre => genre.name !== e.target.value)) :
+        myGenres.filter(genre => genre !== e.target.value)) :
       
         setMyPlatforms(
         myPlatforms.filter(platf => platf !== e.target.value)
@@ -171,7 +176,15 @@ export default function Create() {
     handleRemoveimg(e);
   };
 
+  
+
   useEffect(()=>{
+    if(!allGenres) {dispatch(getGenres());}    
+    
+    if(!allPlatforms) dispatch(getPlatforms());
+    
+    //setMyGenres(allGenres?.filter(genre => genre.name));
+  
     if(data.name && data.description && data.genres.length && data.platforms.length) {
       setShowCreate('');
     }
@@ -195,10 +208,12 @@ export default function Create() {
         setStars(star5)
     }
 
-
+    
     
 
-  },[data, stars]);
+  },[data, stars, dispatch ]);
+
+  
 
   /*const handleOnReleased = (e) =>{
     let today = new Date();
@@ -242,7 +257,7 @@ export default function Create() {
 
   return (
     <div>
-
+    {allGenres? 
     <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr'}}>
       <div style={{marginLeft: 'auto'}}><h2>Create Game</h2>
         <form id='myform' onChange={handleSubmit}>
@@ -268,7 +283,7 @@ export default function Create() {
             <label>Genres: </label>
             <button onClick={handleShow} value="genr">{btnShow.btnGenres}</button>
             <br/>
-            <div>{data.genres.map(genre => <button 
+            <div>{data.genres?.map(genre => <button 
                           style={{
                               cursor: 'pointer',
                               border: 'none',
@@ -280,6 +295,7 @@ export default function Create() {
                            onClick={handleAdd}
                            name="genres"
                            value={genre}
+                           key={genre}
                            
                            
                   >{genre}</button>)}</div>
@@ -289,7 +305,7 @@ export default function Create() {
                       display: showGenres
                   }}
             >
-                {myGenres.map(genre => 
+                {myGenres?.map(genre => 
                         
                   <button style={{
                               cursor: 'pointer',
@@ -299,11 +315,12 @@ export default function Create() {
                           }}
                           onClick={handleAdd}
                           name="genres"
-                          value={genre.name}
+                          value={genre}
+                          key={genre}
                           
-                    
+              
                    
-                  >{genre.name} 
+                  >{genre} 
                   </button>
                     
                     
@@ -314,7 +331,7 @@ export default function Create() {
             <label>Platforms: </label>
             <button value="platf" onClick={handleShow}>{btnShow.btnPlatf}</button>
             <br/>
-            {data.platforms.map(platf => <button 
+            {data.platforms?.map(platf => <button 
                           style={{
                               cursor: 'pointer',
                               border: 'none',
@@ -326,6 +343,8 @@ export default function Create() {
                            onClick={handleAdd}
                            name="platforms"
                            value={platf}
+                           key={platf}
+                           
                            
                            
                   >{platf}</button>/*<div>{data.platforms.join(' - ')}*/)}
@@ -339,7 +358,7 @@ export default function Create() {
                   }}
                   
             >
-                {myPlatforms.map(platf => 
+                {myPlatforms?.map(platf => 
                         
                   <button 
                           style={{
@@ -352,6 +371,7 @@ export default function Create() {
                            onClick={handleAdd}
                            name="platforms"
                            value={platf}
+                           key={platf}
                            
                            
                   >{platf}</button>
@@ -434,6 +454,7 @@ export default function Create() {
       </div>
         
     </div>
+    :false}
 
     
   </div>  

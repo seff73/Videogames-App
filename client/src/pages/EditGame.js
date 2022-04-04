@@ -238,16 +238,7 @@ export default function EditGame() {
     
     }, [dispatch, id, data, stars]);
 
-    const handleGenres = () => {
-    
-        if(gameDetail.createdInDb) {
-             return gameDetail.genres.map(genre=>genre.name).join(' - ')
-         }
-        else {
-            return gameDetail.genres.join(' - ')
-        }
-    }
-
+  
   return (
     <div>
 
