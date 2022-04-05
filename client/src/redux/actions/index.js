@@ -3,7 +3,7 @@ import { GET_ALL_GAMES, CREATE_GAME, GET_GAME_DETAIL, GET_ALL_GENRES, SEARCH_GAM
 
 export function getGames() {
     return async function(dispatch) {
-        let result = await axios.get('http://localhost:3001/videogames');
+        let result = await axios.get('/videogames');
         let paginado = [];
       
         let dbGames = result.data.filter(game => game.createdInDb);
@@ -42,7 +42,7 @@ export function getGames() {
 
 export function getGenres() {
     return async function(dispatch) {
-        const result = await axios.get('http://localhost:3001/genres');
+        const result = await axios.get('/genres');
         return dispatch({
             type: GET_ALL_GENRES,
             payload: result.data
@@ -58,7 +58,7 @@ export function getDetail(id) {
         }
     }
     return async function(dispatch) {
-        const result = await axios.get(`http://localhost:3001/videogames/${id}`);
+        const result = await axios.get(`/videogames/${id}`);
         return dispatch({
             type: GET_GAME_DETAIL,
             payload: result.data
@@ -74,7 +74,7 @@ export function searchGame(name) {
         }
     }
     return async function(dispatch) {
-        const result = await axios.get(`http://localhost:3001/videogames?name=${name}`);
+        const result = await axios.get(`/videogames?name=${name}`);
         return dispatch({
             type: SEARCH_GAME,
             payload: result.data
@@ -85,7 +85,7 @@ export function searchGame(name) {
 
 export function getPlatforms() {
     return async function (dispatch){
-        const result = await axios.get('http://localhost:3001/platforms');
+        const result = await axios.get('/platforms');
         return dispatch({
             type: GET_ALL_PLATFORMS,
             payload: result.data
@@ -102,7 +102,7 @@ export function postGame(game) {
     }
     else {
         return async function (dispatch) {
-            const result = await axios.post('http://localhost:3001/videogames', game);
+            const result = await axios.post('/videogames', game);
             return dispatch({
                 type: CREATE_GAME,
                 payload: result.data
@@ -114,7 +114,7 @@ export function postGame(game) {
 
 export function deleteGame(id) {
     return async function(dispatch) {
-        const result = await axios.delete(`http://localhost:3001/videogames/${id}`);
+        const result = await axios.delete(`/videogames/${id}`);
         return dispatch({
             type: DELETE_GAME,
             payload: result.data
@@ -125,7 +125,7 @@ export function deleteGame(id) {
 
 export function putGame(game, id) {
     return async function(dispatch) {
-        await axios.put(`http://localhost:3001/videogames/${id}`, game);
+        await axios.put(`/videogames/${id}`, game);
         return dispatch({
             type: EDIT_GAME,
         });
