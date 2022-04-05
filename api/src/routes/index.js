@@ -115,6 +115,7 @@ const arrPlatforms = [
     "Neo Geo"
 ];
 const getGenres = async () => {
+    
     const getApiGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
     getApiGenres.data.results.map(genre => {
         Genre.findOrCreate({
@@ -130,6 +131,7 @@ const arrGenres = getGenres();
 
 
 router.get('/videogames', async (req, res) => {
+    try{
     let { name } = req.query;
     const totalGames = await getAllGames();
     
@@ -170,9 +172,15 @@ router.get('/videogames', async (req, res) => {
 
     }
 
+    } catch(error) {
+        console.log(error);
+        res.status(500).send('Something went wrong');
+    }
+
 });
 
 router.get('/genres', async (req, res) => {
+    try{
     /*const getApiGenres = await axios.get(`https://api.rawg.io/api/genres?key=${API_KEY}`);
     getApiGenres.data.results.map(genre => {
         Genre.findOrCreate({
@@ -187,9 +195,14 @@ router.get('/genres', async (req, res) => {
     const result = await arrGenres;
     result.map(genre => genres.push(genre.name))
     res.status(200).send(genres)
+}catch(error){
+    console.log(error);
+    res.status(500).send('Something went wrong');
+}
 });
 
 router.get('/videogames/:id', async (req, res) => {
+    try{
     const { id } = req.params;
     const dbGames = await getDbGames();
     if(id) {
@@ -226,6 +239,11 @@ router.get('/videogames/:id', async (req, res) => {
 
 
     }
+    
+    } catch(error) {
+    console.log(error);
+    res.status(500).send('Something went wrong');
+    }
 
 });
 
@@ -235,6 +253,7 @@ router.get('/platforms', (req, res) => {
 });
 
 router.post('/videogames', async (req, res) => {
+    try{
     const { name, description, released, rating, genres, platforms, createdInDb } = req.body;
     //validation game
     const totalGames = await getAllGames();
@@ -260,9 +279,15 @@ router.post('/videogames', async (req, res) => {
         res.status(200).send('Videogame created successfully')
     }
 
+    } catch(error) {
+        console.log(error);
+        res.status(500).send('Something went wrong');
+    }
+
 });
 
 router.delete('/videogames/:id', async (req, res) => {
+    try{
     const { id } = req.params;
 
     if(id) {
@@ -271,9 +296,14 @@ router.delete('/videogames/:id', async (req, res) => {
         })
     };
     res.status(200).send('Videogame deleted successfully')
+    } catch(error) {
+        console.log(error);
+        res.status(500).send('Something went wrong');
+    }
 });
 
 router.put('/videogames/:id', async (req, res) => {
+    try{
     const { id } = req.params
     const { name, description, released, rating, genres, platforms, createdInDb } = req.body; 
     const dbGames = await getDbGames();;
@@ -295,6 +325,11 @@ router.put('/videogames/:id', async (req, res) => {
 
         res.status(200).send('Videogame updated successfully')
         
+    }
+
+    } catch(error) {    
+        console.log(error);
+        res.status(500).send('Something went wrong');
     }
 })
 
