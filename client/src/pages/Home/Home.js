@@ -17,7 +17,7 @@ export default function Home() {
       if(!allGames) dispatch(getPlatforms());
       
 
-  },[dispatch, pagina]);
+  },[dispatch, pagina,]);
 
   
   const handleByGenres = (e) => {

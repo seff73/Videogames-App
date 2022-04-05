@@ -1,0 +1,39 @@
+.gameCardContent {
+    border: solid #1c2bff82;
+    width: 250px;
+    height: 330px;
+    padding: 0px;
+    background: whitesmoke;
+    border-radius: 0.6em;
+    margin: auto;
+    margin-top: auto
+}
+
+.gameCardContent:hover {
+    box-shadow: 0 0 15px #1c2bff82 contrast(2) brightness(2);
+    cursor: pointer;
+    
+    filter: drop-shadow(0 0 20px) 
+}
+
+
+.h1Title {
+    margin: auto;
+    display: block;
+    color: white;
+    background-color: hsl(229deg 47% 37%);
+    margin-top: -4px;
+}
+
+.gameImg {
+    width: 250px;
+    height: 220px;
+    object-fit: cover;
+    border-top-left-radius: 0.4em;
+    border-top-right-radius: 0.4em;
+}
+
+.genres {
+    margin: auto;
+    color: black;
+}

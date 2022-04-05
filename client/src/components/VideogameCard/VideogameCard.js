@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
-import star1 from "../assets/star1.jpg";
-import star2 from "../assets/star2.jpg";
-import star3 from "../assets/star3.jpg";
-import star4 from "../assets/star4.jpg";
-import star5 from "../assets/star5.jpg";
+import { Link } from 'react-router-dom';
+import star1 from "../../assets/star1.jpg";
+import star2 from "../../assets/star2.jpg";
+import star3 from "../../assets/star3.jpg";
+import star4 from "../../assets/star4.jpg";
+import star5 from "../../assets/star5.jpg";
+import styles from './VideogameCard.module.css';
 
 
 export default function VideogameCard({ name, img, genres, id, rating }) {
@@ -31,7 +32,7 @@ export default function VideogameCard({ name, img, genres, id, rating }) {
   
   
   return (
-    <div>
+    <div className={styles.gameCardContent}>
         <Link 
               style={{
                     textDecoration: 'none'
@@ -42,22 +43,19 @@ export default function VideogameCard({ name, img, genres, id, rating }) {
               
         >
               
-        <h4>{name}</h4>
         
-        <img style={{
-                width: '180px',
-                height: '220px',
-                objectFit: 'cover',
-                borderRadius: '10px'         
-            }}
-            src={img} 
-            alt='img-game'/>
-        </Link>
-        <br/>
+        
+        <img  className={styles.gameImg} 
+              
+              src={img} 
+              alt='img-game'/>
+        <h4 className={styles.h1Title}>{name}</h4>
+        
         {rating >=1?
         <img style={{width: '100px', height: 'auto'}} src={stars} alt="rating-img"/>
         :false}
-        <p>Genres:{<br/>}{genres}</p>
+        <p className={styles.genres}>Genres:{<br/>}{genres}</p>
+        </Link>
     </div>
   )
 }

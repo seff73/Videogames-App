@@ -1,6 +1,6 @@
-import VideogameCard from './VideogameCard';
+import VideogameCard from './VideogameCard/VideogameCard';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../redux/actions';
 import img from "../assets/defaultGameImg.png";
 
@@ -61,7 +61,8 @@ const handlePage = (e) => {
 
       <div style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr'
+              gridTemplateColumns: '2fr 1.8fr 1.8fr 2fr',
+              marginTop: '20px'
            }}
            key='videogames1'
       > 

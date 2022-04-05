@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import VideogameCard from "../components/VideogameCard";
+import VideogameCard from "../components/VideogameCard/VideogameCard";
 import img from "../assets/defaultGameImg.png";
 
 

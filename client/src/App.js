@@ -20,7 +20,7 @@ function App() {
             <Route path='/' element={<Landing />} />
             <Route path='/' element={<NavBar />}>
                 <Route path='/home' element={<Home />} />
-                <Route path='/search' element={<SearchGames/>} />
+                <Route path='/search' element={<SearchGames />} />
                 <Route path='/videogames/:id' element={<Detail />} />
                 <Route path='/videogames/create' element={<Create />} />
                 <Route path='/videogames/postcreated' element={<PostCreated />} />
