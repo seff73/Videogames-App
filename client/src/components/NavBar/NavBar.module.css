@@ -1,5 +1,6 @@
 .navContainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
     justify-content: space-evenly;
     background: linear-gradient(90deg, hsla(248, 75%, 33%, 1) 0%, hsla(348, 75%, 33%, 1) 100%);
     margin-bottom: 10px

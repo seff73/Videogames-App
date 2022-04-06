@@ -84,7 +84,7 @@ const handlePage = (e) => {
         {allGames? <div key='pagination-bar'
            style={{
              border: 'solid',
-             width: '450px',
+             width: '100%',
              height: '50px',
              borderColor: 'gainsboro',
              margin: 'auto',

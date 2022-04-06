@@ -44,7 +44,8 @@ export default function NavBar() {
             </Link>    
           </div>
           <div style={{
-                  margin: 'auto'
+                  margin: 'auto',
+                  width: '100%',
           }}>
               <SearchBar />
           </div>
