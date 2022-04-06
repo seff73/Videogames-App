@@ -1,6 +1,6 @@
 import SearchBar from '../SearchBar';
 import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+//import logo from '../../assets/logo.png';
 import styles from './NavBar.module.css';
 
 export default function NavBar() {
@@ -23,11 +23,12 @@ export default function NavBar() {
         <div className={styles.navContainer}
         >
           <div style={{
-                  marginLeft: '20px'
+                  margin: 'auto'
           }}>
-            <Link 
+            <Link style={{textDecoration: 'blink'}}
                   to="/home">
-              <div><img 
+              <div>
+                {/*<img 
                 style={{
                   height: '70px',
                   width: '70px',
@@ -36,19 +37,20 @@ export default function NavBar() {
                 }}
                 src={logo} 
                 alt="logo-main"
-              /></div>
+              />*/}
+                <h2 style={{color: 'white'}}> Videogames - App</h2>
+              </div>
               {/*<div><h3>Videogames <br/> App</h3></div>*/}
             </Link>    
           </div>
           <div style={{
-                  marginTop: '39px'
+                  margin: 'auto'
           }}>
               <SearchBar />
           </div>
 
             <div style={{
-                  marginTop: '39px',
-                  marginRight: '50px'
+                  margin: 'auto'
             }}>
             
             <button className={styles.createButton}

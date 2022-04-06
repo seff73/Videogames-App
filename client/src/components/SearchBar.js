@@ -34,7 +34,7 @@ const handleOnKey = (e) => {
                value={searchInput} 
                placeholder= ' Find your game...'
                style= {{
-                 width: '600px',
+                 width: '30em',
                  height: '30px',
                  borderRadius: '8px'
                }}

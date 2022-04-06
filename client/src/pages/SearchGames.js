@@ -13,7 +13,7 @@ const gamesResult = useSelector(state => state.searchGames);
   return (
     <div style={{
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr'
+        gridTemplateColumns: 'repeat(auto-fill, minmax(15rem, 1fr))',
     }}>
         {gamesResult? gamesResult.map(game => 
 

@@ -61,8 +61,9 @@ const handlePage = (e) => {
 
       <div style={{
               display: 'grid',
-              gridTemplateColumns: '2fr 1.8fr 1.8fr 2fr',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(15rem, 1fr))',
               marginTop: '20px'
+              
            }}
            key='videogames1'
       > 
