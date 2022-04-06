@@ -1,0 +1,19 @@
+.paginationBtn {
+    height: 100%;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.paginationBtn:active{
+  background-color: blueviolet;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.paginationBtn:focus{
+    background-color: blueviolet;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+.paginationBtn:hover{
+    background-color: #c800ad;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}

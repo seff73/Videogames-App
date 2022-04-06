@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGames } from '../redux/actions';
 import img from "../assets/defaultGameImg.png";
+import styles from './Videogames.module.css';
 
 
 export default function Videogames({pagina}) {
@@ -94,11 +95,12 @@ const handlePage = (e) => {
            }}
            >{allGames? allGames.map(pag => 
       <button key={allGames.indexOf(pag)}
-              style={{
+              /*style={{
                 height: '100%',
                 padding: '15px',
                 cursor: 'pointer'
-              }}
+              }}*/
+              className={styles.paginationBtn}
       
               onClick={handlePage}
               value={allGames.indexOf(pag)}>{page + allGames.indexOf(pag)}</button>
